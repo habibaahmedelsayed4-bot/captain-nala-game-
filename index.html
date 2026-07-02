@@ -2,107 +2,149 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>Captain Nala Avan: Trading & Business Game</title>
+    <title>Captain Nala Avan: Ultimate Trading Empire</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body { background-color: #0B192C; color: #FFFFFF; font-family: sans-serif; padding: 15px; margin: 0; box-sizing: border-box; text-align: center; }
-        h1 { color: #FFD700; font-size: 28px; margin-top: 15px; margin-bottom: 5px; font-weight: bold; font-family: 'Arial', sans-serif; }
-        .sub-title { color: #60A5FA; font-size: 14px; margin-bottom: 15px; font-weight: bold; }
-        
-        .welcome-msg { font-size: 15px; color: #FFFFFF; margin-bottom: 20px; font-weight: normal; }
-        .welcome-msg strong { color: #FFD700; font-weight: bold; }
+        body { background-color: #0B192C; color: #FFFFFF; font-family: sans-serif; padding: 15px; margin: 0; box-sizing: border-box; text-align: center; overflow-x: hidden; }
+        h1 { color: #FFD700; font-size: 26px; margin-top: 10px; margin-bottom: 5px; font-weight: bold; }
+        .sub-title { color: #60A5FA; font-size: 13px; margin-bottom: 10px; font-weight: bold; }
+        .welcome-msg { font-size: 14px; color: #FFFFFF; margin-bottom: 15px; }
+        .welcome-msg strong { color: #FFD700; }
 
-        .top-buttons-container { display: flex; justify-content: space-between; max-width: 400px; margin: 0 auto; padding: 0 5px; }
-        .tutorial-btn { background-color: #1E3E62; color: #FFD700; border: 1px solid #FFD700; padding: 6px 12px; font-size: 12px; border-radius: 20px; cursor: pointer; }
-        .goals-btn { background-color: #1E3E62; color: #FFD700; border: 1px solid #FFD700; padding: 6px 12px; font-size: 12px; border-radius: 20px; cursor: pointer; }
-        .clearfix { clear: both; }
+        .news-ticker { background-color: #EF4444; color: white; padding: 8px; font-size: 12px; font-weight: bold; border-radius: 8px; margin-bottom: 15px; border: 1px solid #FFD700; overflow: hidden; white-space: nowrap; box-sizing: border-box; }
+        .news-content { display: inline-block; padding-left: 100%; animation: ticker 25s linear infinite; }
+        @keyframes ticker { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
 
-        .rank-card { border: 2px solid #FFD700; padding: 15px; border-radius: 12px; margin: 15px auto; width: 90%; max-width: 400px; box-sizing: border-box; background-color: transparent; position: relative; }
-        .rank-title { font-size: 15px; color: #FFFFFF; margin: 0; }
-        .rank-value { color: #FFD700; font-weight: bold; font-size: 16px; margin-top: 5px; display: inline-block; }
-        
-        .share-btn { background-color: #1E3E62; color: #FFD700; border: 1px dashed #FFD700; padding: 6px 14px; font-size: 11px; font-weight: bold; border-radius: 15px; cursor: pointer; margin-top: 10px; display: inline-flex; align-items: center; gap: 5px; }
-        .share-btn:active { background-color: #FFD700; color: #000; }
+        .top-buttons-container { display: flex; justify-content: center; max-width: 450px; margin: 0 auto 15px auto; gap: 10px; }
+        .nav-btn { background-color: #1E3E62; color: #FFD700; border: 1px solid #FFD700; padding: 8px 15px; font-size: 12px; border-radius: 20px; cursor: pointer; flex: 1; text-align: center; font-weight: bold; }
 
-        .stats-container { margin-top: 20px; font-size: 16px; line-height: 2; }
+        .rank-card { border: 2px solid #FFD700; padding: 12px; border-radius: 12px; margin: 10px auto; max-width: 450px; background-color: rgba(30, 62, 98, 0.4); }
+        .share-btn { background-color: #1E3E62; color: #FFD700; border: 1px dashed #FFD700; padding: 6px 12px; font-size: 11px; font-weight: bold; border-radius: 15px; cursor: pointer; margin-top: 8px; }
+
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; max-width: 450px; margin: 0 auto; font-size: 15px; }
+        .stat-box { background: #1E3E62; padding: 10px; border-radius: 8px; border: 1px solid #2A4365; }
         .money-text { color: #22C55E; font-weight: bold; }
         .gems-text { color: #60A5FA; font-weight: bold; }
 
-        .exchange-card { background-color: #1E3E62; border: 2px solid #60A5FA; padding: 15px; border-radius: 12px; margin: 20px auto; width: 90%; max-width: 400px; box-sizing: border-box; }
-        .exchange-actions { display: flex; gap: 10px; margin-top: 10px; }
-        .exchange-btn { background-color: #22C55E; color: white; padding: 10px; font-size: 13px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; width: 50%; }
+        .inventory-bar { background: #0B192C; border: 1px solid #2A4365; padding: 8px; border-radius: 8px; max-width: 450px; margin: 10px auto; font-size: 11px; color: #CBD5E1; }
+
+        .stocks-card { background: #1E3E62; border: 2px solid #F97316; padding: 12px; border-radius: 12px; margin: 15px auto; max-width: 450px; }
+        .stocks-table { width: 100%; font-size: 12px; border-collapse: collapse; margin-top: 8px; }
+        .stocks-table th, .stocks-table td { padding: 6px; border-bottom: 1px solid #2A4365; text-align: center; }
+        .stock-up { color: #22C55E; font-weight: bold; }
+        .stock-down { color: #EF4444; font-weight: bold; }
+        .trade-stock-btn { background: #F97316; color: white; border: none; padding: 3px 6px; font-size: 10px; border-radius: 4px; cursor: pointer; }
+
+        .exchange-card { background-color: #1E3E62; border: 2px solid #60A5FA; padding: 12px; border-radius: 12px; margin: 15px auto; max-width: 450px; }
+        .exchange-actions { display: flex; gap: 8px; margin-top: 8px; }
+        .exchange-btn { background-color: #22C55E; color: white; padding: 8px; font-size: 12px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; flex: 1; }
         .exchange-btn.sell { background-color: #EF4444; }
-        .exchange-btn:active { opacity: 0.8; }
 
-        .card { background-color: #1E3E62; padding: 20px; border-radius: 12px; margin: 20px auto; width: 90%; max-width: 400px; box-shadow: 0px 4px 10px rgba(0,0,0,0.3); box-sizing: border-box; }
-        .card-p { font-size: 14px; margin: 0 0 15px 0; line-height: 1.5; }
-        
-        button.main-btn { background-color: #FFD700; color: #000000; border: none; padding: 12px 20px; font-size: 15px; font-weight: bold; border-radius: 8px; cursor: pointer; width: 100%; }
-        button.main-btn:active { background-color: #E6C200; }
+        .card { background-color: #1E3E62; padding: 15px; border-radius: 12px; margin: 15px auto; max-width: 450px; box-shadow: 0px 4px 10px rgba(0,0,0,0.3); }
+        button.main-btn { background-color: #FFD700; color: #000000; border: none; padding: 12px; font-size: 15px; font-weight: bold; border-radius: 8px; cursor: pointer; width: 100%; }
 
-        .shop-card { background-color: #1E3E62; border: 1px dashed #FFD700; padding: 15px; border-radius: 12px; margin: 20px auto; width: 90%; max-width: 400px; box-sizing: border-box; }
-        .shop-title { color: #FFD700; margin: 0 0 15px 0; font-size: 16px; display: flex; align-items: center; justify-content: center; gap: 5px; }
-        
+        .shop-card { background-color: #1E3E62; border: 1px dashed #FFD700; padding: 15px; border-radius: 12px; margin: 15px auto; max-width: 450px; }
         .assets-container { display: flex; flex-direction: column; gap: 15px; }
-        .asset-box { background-color: #0B192C; padding: 15px; border-radius: 8px; border: 1px solid #2A4365; position: relative; }
-        
-        .hot-tag { background-color: #EF4444; color: white; font-size: 10px; font-weight: bold; padding: 2px 6px; border-radius: 8px; position: absolute; top: -10px; right: 15px; }
-        .mega-tag { background-color: #A855F7; color: white; font-size: 10px; font-weight: bold; padding: 2px 6px; border-radius: 8px; position: absolute; top: -10px; right: 15px; }
-
-        .asset-name { margin: 5px 0; font-size: 15px; font-weight: bold; }
-        .asset-details { font-size: 12px; color: #A0AEC0; margin: 5px 0; line-height: 1.4; }
-        
-        button.shop-btn { background-color: #22C55E; color: white; padding: 10px; font-size: 13px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 8px; width: 100%; }
-        button.shop-btn:active { background-color: #16A34A; }
-
-        button.upgrade-btn { background-color: #F97316; color: white; padding: 8px; font-size: 12px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 8px; width: 100%; }
-        button.upgrade-btn:active { background-color: #EA580C; }
+        .asset-box { background-color: #0B192C; padding: 12px; border-radius: 8px; border: 1px solid #2A4365; position: relative; text-align: right; }
+        .hot-tag { background-color: #EF4444; color: white; font-size: 9px; font-weight: bold; padding: 2px 6px; border-radius: 8px; position: absolute; top: -10px; left: 15px; }
+        .asset-name { margin: 2px 0; font-size: 14px; font-weight: bold; color: #FFD700; }
+        .asset-details { font-size: 11px; color: #A0AEC0; margin: 4px 0; line-height: 1.4; }
+        .asset-actions { display: flex; gap: 5px; margin-top: 8px; }
+        .shop-btn { background-color: #22C55E; color: white; padding: 8px; font-size: 11px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; flex: 1; }
+        .upgrade-btn { background-color: #F97316; color: white; padding: 8px; font-size: 11px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; flex: 1; }
+        .automation-btn { background-color: #A855F7; color: white; padding: 8px; font-size: 11px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 5px; }
 
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); z-index: 1000; justify-content: center; align-items: center; }
-        .modal-content { background-color: #1E3E62; border: 2px solid #FFD700; padding: 20px; border-radius: 12px; width: 92%; max-width: 460px; max-height: 85vh; overflow-y: auto; text-align: right; box-sizing: border-box; color: #FFFFFF; }
-        .modal-content h2 { color: #FFD700; text-align: center; margin-top: 0; font-size: 19px; border-bottom: 2px solid #FFD700; padding-bottom: 10px; }
-        .modal-content h3 { color: #60A5FA; font-size: 15px; margin-top: 18px; margin-bottom: 8px; border-bottom: 1px solid rgba(96,165,250,0.3); padding-bottom: 4px; font-weight: bold; }
-        .modal-content p { font-size: 13.5px; line-height: 1.6; margin: 8px 0; color: #E2E8F0; text-align: justify; }
-        .modal-content ul { padding-right: 20px; margin: 5px 0; }
-        .modal-content li { font-size: 13px; line-height: 1.6; margin-bottom: 6px; color: #CBD5E1; }
-        
-        .close-btn { background-color: #EF4444; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 20px; width: 100%; font-size: 14px; }
-        .close-goals-btn { background-color: #FFD700; color: #000000; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 20px; width: 100%; font-size: 14px; }
+        .modal-content { background-color: #1E3E62; border: 2px solid #FFD700; padding: 20px; border-radius: 12px; width: 92%; max-width: 460px; max-height: 80vh; overflow-y: auto; text-align: right; box-sizing: border-box; color: #FFFFFF; }
+        .modal-content h2 { color: #FFD700; text-align: center; margin-top: 0; font-size: 18px; border-bottom: 2px solid #FFD700; padding-bottom: 8px; }
+        .modal-content p { font-size: 13px; line-height: 1.6; color: #E2E8F0; }
+        .close-btn { background-color: #EF4444; color: white; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 15px; width: 100%; font-size: 13px; }
     </style>
 </head>
 <body>
 
-    <div class="top-buttons-container">
-        <button class="tutorial-btn" onclick="openTutorial()">دليل اللعبة ❓</button>
-        <button class="goals-btn" onclick="openGoals()">أهداف التعلم 🎯</button>
+    <div class="news-ticker">
+        <div id="newsTickerText" class="news-content">🔥 مرحباً بكِ في بورصة القائد نالا أوفان.. الأسواق مستقرة حالياً وترقب لأسعار أسهم تكنولوجيا الفضاء!</div>
     </div>
-    <div class="clearfix"></div>
+
+    <div class="top-buttons-container">
+        <button class="nav-btn" onclick="openModal('tutorialModal')">دليل اللعبة ❓</button>
+        <button class="nav-btn" onclick="openModal('goalsModal')">هدف التعلم 📘</button>
+    </div>
 
     <h1>Captain Nala Avan</h1>
-    <div class="sub-title">محاكاة قيادة التداول وإدارة الشركات المالية</div>
-    
-    <div class="welcome-msg">Welcome, <span id="titleGenderText">Captain</span> <strong id="playerNameText">Player</strong>! 💼</div>
+    <div class="sub-title">محاكاة قيادة التداول وإدارة الامبراطوريات المالية المعقدة</div>
+    <div class="welcome-msg">Welcome, Captain <strong id="playerNameText">Nala Avan</strong>! 💼</div>
 
     <div class="rank-card">
-        <div class="rank-title">🎖️ <span id="rankLabelText">رتبتكِ الاستثمارية الحالية:</span> <span id="rankText" class="rank-value">مستثمر مبتدئ 🌱</span></div>
-        <br>
+        <div>🎖️ <span id="rankLabelText">رتبتكِ الحالية:</span> <span id="rankText" style="color:#FFD700; font-weight:bold;">مستثمر طموح 🌱</span></div>
         <button class="share-btn" onclick="shareAchievement()">🏆 مشاركة الإنجاز الاستثماري</button>
     </div>
 
-    <div class="stats-container">
-        <div>💰 رصيد الأموال: <span id="moneyText" class="money-text">1000</span> دولار</div>
-        <div>💎 رصيد الجواهر: <span id="gemsText" class="gems-text">5</span> جواهر</div>
-        <div style="font-size: 12px; color: #A0AEC0; margin-top: 5px;">
-            🧵 أقمشة: <span id="clothCount" style="color:#FFF;">0</span> | 🤖 روبوتات: <span id="robotCount" style="color:#FFF;">0</span> | 🌌 وكالات فضاء: <span id="spaceCount" style="color:#FFF;">0</span>
-        </div>
+    <div class="stats-grid">
+        <div class="stat-box">💰 الأموال: <br><span id="moneyText" class="money-text">1000</span> $</div>
+        <div class="stat-box">💎 الجواهر: <br><span id="gemsText" class="gems-text">5</span></div>
+    </div>
+
+    <div class="inventory-bar">
+        🧵 أقمشة: <span id="clothCount">0</span> | 
+        🤖 روبوتات: <span id="robotCount">0</span> | 
+        🍃 مختبرات الشاي: <span id="teaCount">0</span> | 
+        🌌 وكالات فضاء: <span id="spaceCount">0</span>
+    </div>
+
+    <div class="stocks-card">
+        <h3 style="color: #F97316; margin: 0; font-size: 14px;">📈 لوحة مضاربة الأسهم الحية (Live Stocks)</h3>
+        <table class="stocks-table">
+            <thead>
+                <tr>
+                    <th>الشركة</th>
+                    <th>السعر الحالي</th>
+                    <th>التغير</th>
+                    <th>مخزونك</th>
+                    <th>إجراء</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>مجموعة أقمشة السوق</td>
+                    <td id="stockClothPrice">100 $</td>
+                    <td id="stockClothChange" class="stock-up">+0%</td>
+                    <td id="stockClothOwned">0</td>
+                    <td>
+                        <button class="trade-stock-btn" onclick="buyStock('cloth')">شراء</button>
+                        <button class="trade-stock-btn" style="background:#EF4444;" onclick="sellStock('cloth')">بيع</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Astro-Mint Labs 🍃</td>
+                    <td id="stockTeaPrice">500 $</td>
+                    <td id="stockTeaChange" class="stock-up">+0%</td>
+                    <td id="stockTeaOwned">0</td>
+                    <td>
+                        <button class="trade-stock-btn" onclick="buyStock('tea')">شراء</button>
+                        <button class="trade-stock-btn" style="background:#EF4444;" onclick="sellStock('tea')">بيع</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>صناعات الروبوتات السيادية</td>
+                    <td id="stockRobotPrice">2500 $</td>
+                    <td id="stockRobotChange" class="stock-down">-0%</td>
+                    <td id="stockRobotOwned">0</td>
+                    <td>
+                        <button class="trade-stock-btn" onclick="buyStock('robot')">شراء</button>
+                        <button class="trade-stock-btn" style="background:#EF4444;" onclick="sellStock('robot')">بيع</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
     <div class="exchange-card">
-        <h3 style="color: #60A5FA; margin: 0 0 10px 0; font-size: 16px;">🏦 بورصة الصرافة والتبديل البنكي</h3>
-        <div style="font-size: 13px; text-align: right; padding-right: 15px; line-height: 1.6;">
-            🟢 <span id="buyLabelText">سعر الشراء منكِ:</span> <span id="gemBuyPriceText" style="color: #22C55E; font-weight: bold;">1500 دولار</span>
-            <br>
-            🔴 سعر البيع للبنك: <span id="gemSellPriceText" style="color: #EF4444; font-weight: bold;">1000 دولار</span>
+        <h3 style="color: #60A5FA; margin: 0 0 5px 0; font-size: 14px;">🏦 بورصة الصرافة والتبديل البنكي</h3>
+        <div style="font-size: 12px; text-align: right; padding-right: 10px;">
+            🟢 <span id="buyLabelText">سعر الشراء منكِ:</span> <span id="gemBuyPriceText" style="color: #22C55E; font-weight: bold;">1500 $</span> | 
+            🔴 للبيع: <span id="gemSellPriceText" style="color: #EF4444; font-weight: bold;">1000 $</span>
         </div>
         <div class="exchange-actions">
             <button class="exchange-btn" onclick="buyGemWithMoney()">شراء جوهرة 💎</button>
@@ -111,376 +153,346 @@
     </div>
 
     <div class="card">
-        <p id="cardText" class="card-p">🃏 كرت الحظ الحالي: ابدأ التداول لتحديث رتبتك ومضاعفة ثروتك!</p>
-        <button class="main-btn" onclick="startTrading()">ابدأ التداول والمخاطرة! 📈</button>
+        <p id="cardText" style="font-size: 13px; margin: 0 0 10px 0;">🃏 كرت الحظ: ابدأ التداول والمضاربة الفورية واقتنص الفرص الحالية!</p>
+        <button class="main-btn" onclick="startTrading()">ابدأ التداول السريع والمخاطرة! 📈</button>
     </div>
 
     <div class="shop-card">
-        <h3 class="shop-title">⚠️ بورصة الاستثمارات المعقدة</h3>
-        
+        <h3 style="color: #FFD700; margin: 0 0 10px 0; font-size: 15px;">⚠️ إدارة المصانع والشركات والأتمتة الذكية</h3>
         <div class="assets-container">
+            
+            <!-- 1. مصنع القماش -->
             <div class="asset-box">
-                <span class="hot-tag">الأكثر طلباً في السوق 🔥</span>
-                <div class="asset-name">🧵 مصنع قماش كامل <span id="clothLevelText" style="color: #FFD700; font-size:12px;">(كفاءة: ليفل 1)</span></div>
-                <div class="asset-details">
-                    سعر الشراء التالي: <span id="clothPriceText" style="color: #22C55E; font-weight: bold;">3000 دولار</span>
-                    <br>أرباح المصنع الواحد: <span id="clothProfitText" style="color: #FFD700;">+30 دولار / ثانية</span>
+                <div class="asset-name">🧵 مصنع أقمشة متكامل <span id="clothLevelText" style="font-size:11px; color:#60A5FA;">(ليفل 1)</span></div>
+                <div class="asset-details">السعر: <span id="clothPriceText" style="color:#22C55E;">3000 $</span> | العائد: <span id="clothProfitText" style="color:#FFD700;">+30 $/ثانية</span><br>المدير الحالي: <span id="clothAutoText" style="color:#EF4444;">غير متوفر ❌</span></div>
+                <div class="asset-actions">
+                    <button class="shop-btn" onclick="buyAsset('cloth')">شراء مصنع 🛒</button>
+                    <button class="upgrade-btn" onclick="upgradeAsset('cloth')">ترقية خط الإنتاج (<span id="clothUpgradePriceText">500</span> $)</button>
                 </div>
-                <button class="shop-btn" onclick="buyAsset('cloth')">استثمار وتوسيع 🛒</button>
-                <button class="upgrade-btn" onclick="upgradeAsset('cloth')">⚡ ترقية خط الإنتاج (<span id="clothUpgradePriceText">500</span> دولار)</button>
+                <button class="automation-btn" onclick="hireManager('cloth')">🤖 توظيف مدير تشغيل آلي تلقائي (مرتب ثابت: 1000 $)</button>
             </div>
 
+            <!-- 2. شركة الروبوتات -->
             <div class="asset-box">
-                <div class="asset-name">🤖 شركة روبوتات متطورة <span id="robotLevelText" style="color: #FFD700; font-size:12px;">(كفاءة: ليفل 1)</span></div>
-                <div class="asset-details">
-                    سعر الشراء التالي: <span id="robotPriceText" style="color: #3B82F6; font-weight: bold;">10000 دولار</span>
-                    <br>أرباح الشركة الواحدة: <span id="robotProfitText" style="color: #FFD700;">+100 دولار / ثانية</span>
+                <div class="asset-name">🤖 شركة صناعات روبوتية متطورة <span id="robotLevelText" style="font-size:11px; color:#60A5FA;">(ليفل 1)</span></div>
+                <div class="asset-details">السعر: <span id="robotPriceText" style="color:#22C55E;">10000 $</span> | العائد: <span id="robotProfitText" style="color:#FFD700;">+100 $/ثانية</span><br>المدير الحالي: <span id="robotAutoText" style="color:#EF4444;">غير متوفر ❌</span></div>
+                <div class="asset-actions">
+                    <button class="shop-btn" style="background:#3B82F6;" onclick="buyAsset('robot')">شراء شركة 🛒</button>
+                    <button class="upgrade-btn" onclick="upgradeAsset('robot')">تطوير براءات الاختراع (<span id="robotUpgradePriceText">2000</span> $)</button>
                 </div>
-                <button class="shop-btn" style="background-color: #3B82F6;" onclick="buyAsset('robot')">استثمار وتوسيع 🛒</button>
-                <button class="upgrade-btn" onclick="upgradeAsset('robot')">⚡ ترقية خط الإنتاج (<span id="robotUpgradePriceText">2000</span> دولار)</button>
+                <button class="automation-btn" onclick="hireManager('robot')">🤖 توظيف كبير مهندسين للأتمتة (مرتب ثابت: 5000 $)</button>
             </div>
 
+            <!-- 3. مصنع مختبرات شاي الليمون بالنعناع الكوني -->
+            <div class="asset-box" style="border: 1px solid #22C55E;">
+                <span class="hot-tag" style="background-color:#22C55E;">صيحة السوق ومفضل القائد 🍃🍋</span>
+                <div class="asset-name" style="color:#22C55E;">🍃 مختبرات Astro-Mint Tea Labs</div>
+                <div class="asset-details">السعر: <span id="teaPriceText" style="color:#22C55E;">250000 $</span> | العائد: <span id="teaProfitText" style="color:#FFD700;">+2500 $/ثانية</span><br>المدير الحالي: <span id="teaAutoText" style="color:#EF4444;">غير متوفر ❌</span></div>
+                <div class="asset-actions">
+                    <button class="shop-btn" style="background:#22C55E;" onclick="buyAsset('tea')">امتياز المختبر 🛒</button>
+                    <button class="upgrade-btn" style="background:#16A34A;" onclick="upgradeAsset('tea')">دمج خط ميكنة النعناع (<span id="teaUpgradePriceText">50000</span> $)</button>
+                </div>
+                <button class="automation-btn" style="background:#15803D;" onclick="hireManager('tea')">🤖 توظيف كبير صيادلة ومختص جودة تلقائي (مرتب ثابت: 75000 $)</button>
+            </div>
+
+            <!-- 4. وكالة الفضاء السيادية -->
             <div class="asset-box" style="border: 1px solid #A855F7;">
-                <span class="mega-tag">مشاريع سيادية عملاقة 🌌</span>
-                <div class="asset-name" style="color: #C084FC;">🌌 وكالة استكشاف وأبحاث الفضاء <span id="spaceLevelText" style="color: #FFD700; font-size:12px;">(كفاءة: ليفل 1)</span></div>
-                <div class="asset-details">
-                    سعر الشراء التالي: <span id="spacePriceText" style="color: #A855F7; font-weight: bold;">5000000 دولار</span>
-                    <br>عوائد الوكالة الواحدة: <span id="spaceProfitText" style="color: #FFD700;">+25000 دولار / ثانية</span>
+                <div class="asset-name">🌌 وكالة أبحاث الفضاء والتحكم عن بعد <span id="spaceLevelText" style="font-size:11px; color:#C084FC;">(ليفل 1)</span></div>
+                <div class="asset-details">السعر: <span id="spacePriceText" style="color:#22C55E;">5000000 $</span> | العائد: <span id="spaceProfitText" style="color:#FFD700;">+25000 $/ثانية</span><br>المدير الحالي: <span id="spaceAutoText" style="color:#EF4444;">غير متوفر ❌</span></div>
+                <div class="asset-actions">
+                    <button class="shop-btn" style="background:#A855F7;" onclick="buyAsset('space')">امتياز الوكالة 🛒</button>
+                    <button class="upgrade-btn" style="background:#7E22CE;" onclick="upgradeAsset('space')">شبكة تحكم المدار الفلكي (<span id="spaceUpgradePriceText">1000000</span> $)</button>
                 </div>
-                <button class="shop-btn" style="background-color: #A855F7;" onclick="buyAsset('space')">شراء امتياز الوكالة 🛒</button>
-                <button class="upgrade-btn" style="background-color: #7E22CE;" onclick="upgradeAsset('space')">⚡ ترقية تقنيات التحكم الفضائي (<span id="spaceUpgradePriceText">1000000</span> دولار)</button>
+                <button class="automation-btn" style="background:#6B21A8;" onclick="hireManager('space')">🤖 توظيف مدير طيران فضاء وعالم فلك (مرتب ثابت: 1500000 $)</button>
             </div>
+
         </div>
     </div>
 
-    <!-- موديول التنبيهات المخصص (Alert Box) -->
+    <!-- مـودال إدارة الأزمات والمخاطر -->
     <div id="alertModal" class="modal">
         <div class="modal-content" style="text-align: center; border-color: #FF4C4C;">
-            <h2 id="alertTitle" style="color: #FF4C4C; border-bottom: none; margin-bottom: 0;">⚠️ تنبيه إداري</h2>
-            <p id="alertText" style="font-size: 15px; margin: 20px 0; font-weight: bold;"></p>
-            <button class="close-goals-btn" style="margin-top: 10px;" onclick="closeAlertModal()">فهمت ذلك 👍</button>
+            <h2 id="alertTitle" style="color: #FF4C4C; border-bottom: none; margin-bottom: 0;">⚠️ إدارة الأزمات والمخاطر</h2>
+            <p id="alertText" style="font-size: 14px; margin: 20px 0; font-weight: bold;"></p>
+            <button class="close-btn" style="background:#22C55E;" onclick="closeAlertModal()">فهمت ومتابعة التنفيذ 👍</button>
         </div>
     </div>
 
-    <!-- موديول دليل اللعبة (Tutorial Box) -->
+    <!-- 1. مـودال دليل اللعبة الاستراتيجي (مُعدّل ومُطوّر ليشرح اللعبة بوضوح) -->
     <div id="tutorialModal" class="modal">
         <div class="modal-content">
-            <h2>📘 الموسوعة الشاملة ودليل القيادة التداولية</h2>
-            <h3>💼 أولاً: نظام التداول والمخاطرة وعقلية الاقتناص</h3>
-            <p>عند الضغط على زر "ابدأ التداول والمخاطرة"، يتم سحب كرت حظ عشوائي يعكس حالة السوق الفورية والمفاجئة. الاقتصاد لا يسير على وتيرة واحدة؛ حيث يتأرجح بين صعود قياسي يهب الأرباح، وهبوط مفاجئ يتطلب إدارة صارمة للمخاطر وتأمين السيولة النقدية حتى لا تعلن الشركة إفلاسها العابر.</p>
-            <h3>💎 ثانياً: آلية الصرافة البنكية والمضاربة بالعملات (الفوركس)</h3>
-            <p>تم تصميم هذا القسم لمحاكاة أسواق العملات العالمية بدقة عالية. الجواهر هنا تمثل العملة الصعبة أو الذهب. عندما يقوم اللاعب بالشراء، يرتفع سعر الجوهرة التالي نتيجة زيادة الطلب؛ وعندما يقوم بالبيع، ينخفض السعر نتيجة زيادة المعروض. الذكاء يكمن في الشراء وقت الانخفاض وإعادة البيع وقت الذروة لتحقيق قفزات مالية مرعبة.</p>
-            <h3>🏭 ثالثاً: إدارة الأصول المعقدة والدخل السلبي (Passive Income)</h3>
-            <ul>
-                <li><strong>مصانع الأقمشة:</strong> تمثل الاستثمار التقليدي المستقر، تكلفة شرائها منخفضة ومخاطرها شبه منعدمة، وهي حجر الأساس لبناء رأس المال الأولي.</li>
-                <li><strong>شركات الروبوتات المتطورة:</strong> تمثل الاستثمار في قطاع التكنولوجيا والذكاء الاصطناعي، تكلفة إنتاجها وتطوير خطوطها أعلى، لكن عوائدها تتضاعف بشكل مذهل لتقود الأسواق.</li>
-                <li><strong>وكالات الأبحاث الفضائية:</strong> تُمثل قمة الهرم الاستثماري السيادي؛ مشاريع عملاقة تتطلب ملايين الدولارات لامتيازها وترقيتها، ولكنها بالمقابل تضخ ثروات فلكية تدفع باللاعب إلى مصاف أباطرة الاقتصاد العالمي.</li>
-            </ul>
-            <button class="close-btn" onclick="closeTutorial()">إغلاق الموسوعة والعودة للميدان ❌</button>
+            <h2>❓ دليل اللعبة الاستراتيجي الشامل</h2>
+            <p>مرحباً بك في إمبراطورية التداول مجهولة الحدود! إذا كنت تدخل هذا الميدان لأول مرة، فإليك كيف تدير دفتك الاستثمارية بنجاح:</p>
+            <p>💰 <strong>الهدف الأساسي:</strong> تعظيم ثروتك الافتراضية والارتقاء برتبتك القيادية عبر اقتناص الفرص المالية السريعة وتأسيس أصول ثابتة ومستقرة.</p>
+            <p>📈 <strong>لوحة المضاربة الحية:</strong> الأسعار هنا تتغير باستمرار كل بضعة ثوانٍ! يمكنك شراء أسهم شركات الأقمشة، أو الروبوتات، أو مختبرات الشاي عندما تهبط أسعارها، ثم بيعها فوراً عند صعود المؤشر لتحقيق أرباح رأسمالية فورية.</p>
+            <p>🏭 <strong>إدارة المصانع والشركات:</strong> بدلاً من الاعتماد على التداول اليدوي فقط، يمكنك استخدام السيولة النقدية لشراء مصانع لإنتاج الأقمشة، شركات روبوتات، أو حتى وكالات فضاء. هذه الأصول تدر عليك دخلاً ثابتاً وتلقائياً كل ثانية.</p>
+            <p>🤖 <strong>الأتمتة الذكية والترقيات:</strong> يمكنك ترقية خطوط إنتاج مصانعك لمضاعفة أرباحها الثابتة، كما يمكنك توظيف مديرين تنفيذيين وكبار مهندسين لإدارة مصانعك بشكل آلي كامل مما يمنحك كفاءة تشغيلية مضاعفة دون الحاجة للنقر اليدوي.</p>
+            <p>🃏 <strong>كروت الحظ والصرافة:</strong> زر "التداول السريع" يضعك أمام مخاطرة فورية قد ترفع ثروتك للسماء أو تخضعك لحركة تصحيحية مفاجئة، كما تتيح لك البورصة البنكية تحويل الكاش الافتراضي إلى جواهر لحفظ قيمة ثروتك.</p>
+            <button class="close-btn" onclick="closeModal('tutorialModal')">العودة للميدان ❌</button>
+        </div>
+    </div>
+    
+    <!-- 2. مـودال هدف التعلم والتنويه القانوني (مُعدّل ومُوجه للمعلمين والطلاب) -->
+    <div id="goalsModal" class="modal">
+        <div class="modal-content">
+            <h2>📘 هدف التعلم ومحاكاة القيادة (دليل المعلم)</h2>
+            <p><strong>⚠️ تنويه قانوني حاسم وإخلاء مسؤولية:</strong> كافة الأصول، والشركات، والأسهم، ومؤشرات البورصة، والأسعار، والمرتبات، والعملات، والجواهر المذكورة داخل هذا التطبيق هي <strong>محاكاة برمجية افتراضية 100%</strong> ولا صلة لها بالواقع أو بأي معاملات مالية حقيقية.</p>
+            <p><strong>🎓 الرؤية التعليمية والتربوية (للمعلمين والموجهين):</strong> تهدف هذه المحاكاة بشكل كامل إلى تدريب وتثقيف العقول الشابة اقتصادياً وبرمجياً على آليات السوق المعاصرة. من خلال اللعبة، يتعلم الطالب بشكل تفاعلي آمن وممتع المهارات التالية:</p>
+            <p>* <strong>إدارة المخاطر والأزمات المالية:</strong> اتخاذ قرارات مصيرية عند تقلب الأسعار المفاجئ وإدارة خطط الإنقاذ في حالات الإفلاس الافتراضي.</p>
+            <p>* <strong>حساب العوائد الاستثمارية (ROI):</strong> موازنة النفقات الرأسمالية (Capital Expenses) عند ترقية الأصول مقابل التدفقات النقدية الجارية (Cash Flow) المتولدة كل ثانية.</p>
+            <p>* <strong>مبادئ التخطيط والقيادة الاستراتيجية:</strong> دمج الأتمتة (Automation) والاعتماد على الهياكل الإدارية (توظيف المديرين) لضمان استدامة نمو الشركات الافتراضية.</p>
+            <button class="close-btn" style="background:#FFD700; color:#000;" onclick="closeModal('goalsModal')">استيعاب الرؤية ومتابعة اللعب 🤝</button>
         </div>
     </div>
 
-    <!-- موديول أهداف التعلم (Goals Box) -->
-    <div id="goalsModal" class="modal">
-        <div class="modal-content">
-            <h2>🎯 الرؤية الاقتصادية وأهداف التعلم الاستراتيجية للمستقبل</h2>
-            <div style="background-color: #0B192C; padding: 12px; border-radius: 8px; border: 1px solid #FFD700; margin-bottom: 15px;">
-                <p style="text-align: right; font-weight: bold; color: #FFD700; font-size: 13px; margin: 0; line-height: 1.5;">
-                    📢 إعلان إداري وقانوني حاسم: تم تصميم هذه بيئة برمجية كأداة تعليمية، تدريبية، ومحاكاة اقتصادية افتراضية كاملة. كافة الأسماء، الشركات، المصانع، والمشاريع الفضائية هي مشاريع وهمية داخل اللعبة فقط ولا تمت للواقع بصلة، والهدف منها هو صقل المهارات الرياضية والإدارية والمنطقية بطريقة تفاعلية آمنة تماماً.
-                </p>
+    <!-- 3. مـودال مشاركة الإنجاز الأسطوري المفصل وجملة السكرين شوت -->
+    <div id="achievementModal" class="modal">
+        <div class="modal-content" style="text-align: center; border-color: #FFD700;">
+            <h2 style="color: #FFD700; border-bottom: 2px solid #FFD700; padding-bottom: 8px;">🏆 لوحة الإنجاز الأسطوري للقائد</h2>
+            <div id="achievementContent" style="text-align: right; font-size: 14px; line-height: 1.8; margin: 15px 0; color: #E2E8F0;">
+                <!-- يتم حقن البيانات تفاعلياً هنا بواسطة JavaScript -->
             </div>
-            <h3>🏆 1. صقل عقلية المستثمر والتمييز بين الأصول والالتزامات</h3>
-            <p>تستهدف اللعبة بشكل مباشر تدريب عقل اللاعب على تفكير مالي سليم؛ فبدلاً من إنفاق الكاش في بنود استهلاكية غير منتجة، يتعلم اللاعب كيفية توجيه السيولة لشراء أصول حقيقية (مصانع، شركات، تكنولوجيا) تولد عوائد مستمرة وتضمن نمو الثروة على المدى الطويل.</p>
-            <h3>📈 2. استراتيجيات التحوط المالي وإدارة الأزمات الاقتصادية (Hedging)</h3>
-            <p>يتعلم القائد أو القائدة من خلال تقلبات السوق كيفية بناء حائط صد اقتصادي قوي. اللعبة توضح عملياً أنه لا يمكن الاعتماد على قطاع واحد أو التداول اليدوي فقط، بل يجب توزيع المخاطر بين مخزون الجواهر الآمن، والدخل السلبي من المصانع، والسيولة النقدية لمواجهة أي هبوط حاد ومفاجئ.</p>
-            <h3>🌌 3. التفكير الاستثماري السيادي وإدارة الأرقام الفلكية</h3>
-            <p>الهدف الأسمى هو توسيع المدارك العقلية وتدريب ذهن الشباب على التعامل مع الأرقام الكبيرة والملايين دون رهبة، والتخطيط الاستراتيجي لامتلاك قطاعات سيادية عملاقة مثل تكنولوجيا الفضاء والروبوتات، وربط العلوم والتكنولوجيا بالاقتصاد لتهيئة الجيل الجديد لقيادة المستقبل بثقة واقتدار.</p>
-            <button class="close-goals-btn" onclick="closeGoals()">استيعاب الرؤية والعودة للميدان 🤝</button>
+            <p style="color: #FFD700; font-weight: bold; font-size: 13px; border-top: 1px dashed #FFD700; padding-top: 10px; margin-top: 10px;">
+                📸 التقط لقطة شاشة (Screenshot) الآن وشارك نجاحك مع أصدقائك!
+            </p>
+            <button class="close-btn" style="background:#22C55E;" onclick="closeModal('achievementModal')">متابعة بناء الثروة 🚀</button>
         </div>
     </div>
 
     <script>
-        let money = 1000;
-        let gems = 5;
-        let clothOwned = 0;
-        let robotOwned = 0;
-        let spaceOwned = 0;
+        let money = 1000; let gems = 5;
+        let clothOwned = 0; let robotOwned = 0; let teaOwned = 0; let spaceOwned = 0;
         
-        let clothBasePrice = 3000;
-        let robotBasePrice = 10000;
-        let spaceBasePrice = 5000000;
-        
-        let currentClothPrice = clothBasePrice;
-        let currentRobotPrice = robotBasePrice;
-        let currentSpacePrice = spaceBasePrice;
+        let clothBasePrice = 3000; let robotBasePrice = 10000; let teaBasePrice = 250000; let spaceBasePrice = 5000000;
+        let currentClothPrice = clothBasePrice; let currentRobotPrice = robotBasePrice; let currentTeaPrice = teaBasePrice; let currentSpacePrice = spaceBasePrice;
 
-        let clothLevel = 1;
-        let robotLevel = 1;
-        let spaceLevel = 1;
+        let clothLevel = 1; let robotLevel = 1; let teaLevel = 1; let spaceLevel = 1;
+        let clothUpgradePrice = 500; let robotUpgradePrice = 2000; let teaUpgradePrice = 50000; let spaceUpgradePrice = 1000000;
         
-        let clothUpgradePrice = 500;
-        let robotUpgradePrice = 2000;
-        let spaceUpgradePrice = 1000000;
-        
-        let clothProfitPerSecond = 30;
-        let robotProfitPerSecond = 100;
-        let spaceProfitPerSecond = 25000;
+        let clothProfitPerSecond = 30; let robotProfitPerSecond = 100; let teaProfitPerSecond = 2500; let spaceProfitPerSecond = 25000;
 
-        let gemBuyPrice = 1500;  
-        let gemSellPrice = 1000; 
-        
-        let playerName = ""; 
-        let isFemale = true; 
+        let clothAuto = false; let robotAuto = false; let teaAuto = false; let spaceAuto = false;
 
-        let luckyCardsTemplate = [
-            { textM: "📈 شركتك حققت أرباحاً قياسية! كسبتَ +500 دولار.", textF: "📈 شركتك حققت أرباحاً قياسية! كسبتِ +500 دولار.", moneyEffect: 500, gemsEffect: 0 },
-            { textM: "📉 هبوط مفاجئ في الأسواق العالمية! خسرتَ -200 دولار.", textF: "📉 هبوط مفاجئ في الأسواق العالمية! خسرتِ -200 دولار.", moneyEffect: -200, gemsEffect: 0 },
-            { textM: "💎 قمتَ ببيع برمجية ذكاء اصطناعي مذهلة! كسبتَ +400 دولار و +1 جوهرة.", textF: "💎 قمتِ ببيع برمجية ذكاء اصطناعي مذهلة! كسبتِ +400 دولار و +1 جوهرة.", moneyEffect: 400, gemsEffect: 1 },
-            { textM: "💸 مصلحة الضرائب قامت بخصم مصاريف إدارية من حسابك -150 دولار.", textF: "💸 مصلحة الضرائب قامت بخصم مصاريف إدارية من حسابكِ -150 دولار.", moneyEffect: -150, gemsEffect: 0 }
+        let gemBuyPrice = 1500; let gemSellPrice = 1000; 
+        let playerName = "Nala Avan";
+
+        let stocks = {
+            cloth: { price: 100, initial: 100, owned: 0 },
+            tea: { price: 500, initial: 500, owned: 0 },
+            robot: { price: 2500, initial: 2500, owned: 0 }
+        };
+
+        let globalNews = [
+            "📢 عاجل: طفرة تكنولوجية في فلاتر النعناع ترفع أرباح Astro-Mint Labs بنسبة 50%!",
+            "🔥 تذبذب حاد في بورصة وول ستريت وأسعار الذهب والجواهر تشهد إقبالاً تاريخياً!",
+            "📢 عاجل: إعلان بعثة استكشافية متجهة لفينوس لشراء دفعة روبوتات ضخمة والأسهم تشتعل!",
+            "⚠️ أزمة سلاسل إمداد عالمية تؤدي لارتفاع طفيف في تكاليف ترقية المصانع الأرضية."
         ];
 
-        function checkGender(name) {
-            let lowerName = name.toLowerCase();
-            if (lowerName.includes("nala") || lowerName.includes("habiba") || name.endsWith("ة") || name.endsWith("ه") || name.endsWith("ى") || name.endsWith("ا")) {
-                return true; 
-            }
-            return false; 
-        }
-
-        function customAlert(title, message) {
-            document.getElementById("alertTitle").innerText = title;
-            document.getElementById("alertText").innerText = message;
-            document.getElementById("alertModal").style.display = "flex";
-        }
-        function closeAlertModal() { document.getElementById("alertModal").style.display = "none"; }
+        function openModal(id) { document.getElementById(id).style.display = "flex"; }
+        function closeModal(id) { document.getElementById(id).style.display = "none"; }
+        function customAlert(title, msg) { document.getElementById("alertTitle").innerText = title; document.getElementById("alertText").innerText = msg; openModal("alertModal"); }
+        function closeAlertModal() { closeModal("alertModal"); }
 
         function saveGame() {
-            const data = { playerName, money, gems, clothOwned, robotOwned, spaceOwned, clothLevel, robotLevel, spaceLevel, clothUpgradePrice, robotUpgradePrice, spaceUpgradePrice, clothProfitPerSecond, robotProfitPerSecond, spaceProfitPerSecond, clothBasePrice, robotBasePrice, spaceBasePrice, gemBuyPrice, gemSellPrice };
-            localStorage.setItem('nalaDynamicV6_Final', JSON.stringify(data));
+            const data = { money, gems, clothOwned, robotOwned, teaOwned, spaceOwned, clothLevel, robotLevel, teaLevel, spaceLevel, clothUpgradePrice, robotUpgradePrice, teaUpgradePrice, spaceUpgradePrice, clothProfitPerSecond, robotProfitPerSecond, teaProfitPerSecond, spaceProfitPerSecond, clothAuto, robotAuto, teaAuto, spaceAuto, gemBuyPrice, gemSellPrice, playerName, stocks };
+            localStorage.setItem('nala_mega_empire_v2', JSON.stringify(data));
         }
 
         function loadGame() {
-            const saved = localStorage.getItem('nalaDynamicV6_Final');
-            if (saved) {
+            const saved = localStorage.getItem('nala_mega_empire_v2');
+            if(saved) {
                 try {
-                    const data = JSON.parse(saved);
-                    if (data.money !== undefined) {
-                        money = data.money; gems = data.gems; clothOwned = data.clothOwned; robotOwned = data.robotOwned;
-                        spaceOwned = data.spaceOwned || 0; clothLevel = data.clothLevel; robotLevel = data.robotLevel;
-                        spaceLevel = data.spaceLevel || 1; clothUpgradePrice = data.clothUpgradePrice;
-                        robotUpgradePrice = data.robotUpgradePrice; spaceUpgradePrice = data.spaceUpgradePrice || 1000000;
-                        clothProfitPerSecond = data.clothProfitPerSecond; robotProfitPerSecond = data.robotProfitPerSecond;
-                        spaceProfitPerSecond = data.spaceProfitPerSecond || 25000; clothBasePrice = data.clothBasePrice;
-                        robotBasePrice = data.robotBasePrice; spaceBasePrice = data.spaceBasePrice || 5000000;
-                        gemBuyPrice = data.gemBuyPrice; gemSellPrice = data.gemSellPrice;
-                        playerName = data.playerName || "Captain";
-                    }
-                } catch(e) { localStorage.removeItem('nalaDynamicV6_Final'); }
-            } else {
-                let inputName = prompt("Welcome to Captain Nala Avan Game! من فضلك أدخل اسمك الاستثماري التنافسي:");
-                if(inputName && inputName.trim() !== "") {
-                    playerName = inputName.trim();
-                } else {
-                    playerName = "Nala Avan"; 
-                }
-                saveGame();
+                    const d = JSON.parse(saved);
+                    money = d.money; gems = d.gems; clothOwned = d.clothOwned; robotOwned = d.robotOwned;
+                    teaOwned = d.teaOwned || 0; spaceOwned = d.spaceOwned; clothLevel = d.clothLevel;
+                    robotLevel = d.robotLevel; teaLevel = d.teaLevel || 1; spaceLevel = d.spaceLevel;
+                    clothUpgradePrice = d.clothUpgradePrice; robotUpgradePrice = d.robotUpgradePrice;
+                    teaUpgradePrice = d.teaUpgradePrice || 50000; spaceUpgradePrice = d.spaceUpgradePrice;
+                    clothProfitPerSecond = d.clothProfitPerSecond; robotProfitPerSecond = d.robotProfitPerSecond;
+                    teaProfitPerSecond = d.teaProfitPerSecond || 2500; spaceProfitPerSecond = d.spaceProfitPerSecond;
+                    clothAuto = d.clothAuto || false; robotAuto = d.robotAuto || false; teaAuto = d.teaAuto || false; spaceAuto = d.spaceAuto || false;
+                    gemBuyPrice = d.gemBuyPrice; gemSellPrice = d.gemSellPrice; playerName = d.playerName || "Nala Avan";
+                    if(d.stocks) stocks = d.stocks;
+                } catch(e) {}
             }
-            isFemale = checkGender(playerName);
+            document.getElementById("playerNameText").innerText = playerName;
         }
-
-        function playBeep() {
-            try {
-                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.connect(gain); gain.connect(audioCtx.destination);
-                osc.frequency.setValueAtTime(550, audioCtx.currentTime);
-                gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
-                osc.start(); osc.stop(audioCtx.currentTime + 0.05);
-            } catch(e) {}
-        }
-
-        function openTutorial() { playBeep(); document.getElementById("tutorialModal").style.display = "flex"; }
-        function closeTutorial() { playBeep(); document.getElementById("tutorialModal").style.display = "none"; }
-        function openGoals() { playBeep(); document.getElementById("goalsModal").style.display = "flex"; }
-        function closeGoals() { playBeep(); document.getElementById("goalsModal").style.display = "none"; }
 
         function calculateCurrentPrices() {
-            currentClothPrice = Math.floor(clothBasePrice + (clothOwned * (clothBasePrice * 0.5)));
-            currentRobotPrice = Math.floor(robotBasePrice + (robotOwned * (robotBasePrice * 0.5)));
-            currentSpacePrice = Math.floor(spaceBasePrice + (spaceOwned * (spaceBasePrice * 0.6)));
+            currentClothPrice = Math.floor(clothBasePrice + (clothOwned * (clothBasePrice * 0.4)));
+            currentRobotPrice = Math.floor(robotBasePrice + (robotOwned * (robotBasePrice * 0.4)));
+            currentTeaPrice = Math.floor(teaBasePrice + (teaOwned * (teaBasePrice * 0.4)));
+            currentSpacePrice = Math.floor(spaceBasePrice + (spaceOwned * (spaceBasePrice * 0.5)));
             
-            document.getElementById("clothPriceText").innerText = currentClothPrice + " دولار";
-            document.getElementById("robotPriceText").innerText = currentRobotPrice + " دولار";
-            document.getElementById("spacePriceText").innerText = currentSpacePrice + " دولار";
-        }
-
-        function buyGemWithMoney() {
-            playBeep();
-            if (money >= gemBuyPrice) {
-                money -= gemBuyPrice; gems += 1; gemBuyPrice += 200; gemSellPrice += 150; updateUI(); saveGame();
-            } else { 
-                let msg = isFemale ? "محتاجة كاش إضافي لإتمام الشراء." : "محتاج كاش إضافي لإتمام الشراء.";
-                customAlert("❌ كاش غير كافٍ", msg); 
-            }
-        }
-
-        function sellGemForMoney() {
-            playBeep();
-            if (gems >= 1) {
-                gems -= 1; money += gemSellPrice;
-                gemBuyPrice = Math.max(1500, gemBuyPrice - 100); gemSellPrice = Math.max(1000, gemSellPrice - 80);
-                updateUI(); saveGame();
-            } else { customAlert("❌ تنبيه المخزون", "لا توجد جواهر كافية للبيع."); }
+            document.getElementById("clothPriceText").innerText = currentClothPrice + " $";
+            document.getElementById("robotPriceText").innerText = currentRobotPrice + " $";
+            document.getElementById("teaPriceText").innerText = currentTeaPrice + " $";
+            document.getElementById("spacePriceText").innerText = currentSpacePrice + " $";
         }
 
         function buyAsset(type) {
-            playBeep();
-            if (type === 'cloth') {
-                if (money >= currentClothPrice) { 
-                    money -= currentClothPrice; 
-                    clothOwned++; 
-                } else { 
-                    customAlert("❌ سيولة غير كافية", `تحتاجين إلى ${currentClothPrice} دولار لشراء مصنع القماش!`);
-                    return; 
-                }
-            } else if (type === 'robot') {
-                if (money >= currentRobotPrice) { 
-                    money -= currentRobotPrice; 
-                    robotOwned++; 
-                } else { 
-                    customAlert("❌ سيولة غير كافية", `تحتاجين إلى ${currentRobotPrice} دولار لشراء شركة الروبوتات!`);
-                    return; 
-                }
-            } else if (type === 'space') {
-                if (money >= currentSpacePrice) { 
-                    money -= currentSpacePrice; 
-                    spaceOwned++; 
-                } else { 
-                    customAlert("❌ سيولة غير كافية", `تحتاجين إلى ${currentSpacePrice} دولار لشراء وكالة الفضاء!`);
-                    return; 
-                }
-            }
+            if (type === 'cloth' && money >= currentClothPrice) { money -= currentClothPrice; clothOwned++; } 
+            else if (type === 'robot' && money >= currentRobotPrice) { money -= currentRobotPrice; robotOwned++; } 
+            else if (type === 'tea' && money >= currentTeaPrice) { money -= currentTeaPrice; teaOwned++; }
+            else if (type === 'space' && money >= currentSpacePrice) { money -= currentSpacePrice; spaceOwned++; } 
+            else { customAlert("❌ أزمة سيولة نقدية", "عفواً، رصيدك الاستثماري الحالي لا يغطي تكلفة الامتياز والشراء!"); return; }
             calculateCurrentPrices(); updateUI(); saveGame();
         }
 
         function upgradeAsset(type) {
-            playBeep();
-            if (type === 'cloth') {
-                if (clothOwned === 0) {
-                    customAlert("⚠️ خطأ في الإدارة", "يجب شراء مصنع قماش واحد على الأقل قبل ترقية خط الإنتاج!");
-                    return;
-                }
-                if (money >= clothUpgradePrice) { 
-                    money -= clothUpgradePrice; 
-                    clothLevel++; 
-                    clothProfitPerSecond = clothLevel * 30; 
-                    clothUpgradePrice = Math.floor(clothUpgradePrice * 1.8); 
-                } else {
-                    customAlert("❌ سيولة غير كافية", `ترقية خط إنتاج القماش تتطلب ${clothUpgradePrice} دولار!`);
-                    return;
-                }
-            } else if (type === 'robot') {
-                if (robotOwned === 0) {
-                    customAlert("⚠️ خطأ في الإدارة", "يجب شراء شركة روبوتات واحدة على الأقل قبل ترقية خط الإنتاج!");
-                    return;
-                }
-                if (money >= robotUpgradePrice) { 
-                    money -= robotUpgradePrice; 
-                    robotLevel++; 
-                    robotProfitPerSecond = robotLevel * 100; 
-                    robotUpgradePrice = Math.floor(robotUpgradePrice * 1.8); 
-                } else {
-                    customAlert("❌ سيولة غير كافية", `ترقية شركة الروبوتات تتطلب ${robotUpgradePrice} دولار!`);
-                    return;
-                }
-            } else if (type === 'space') {
-                if (spaceOwned === 0) {
-                    customAlert("⚠️ خطأ في الإدارة", "يجب امتلاك وكالة فضاء أولاً قبل ترقية تقنيات التحكم!");
-                    return;
-                }
-                if (money >= spaceUpgradePrice) { 
-                    money -= spaceUpgradePrice; 
-                    spaceLevel++; 
-                    spaceProfitPerSecond = spaceLevel * 25000; 
-                    spaceUpgradePrice = Math.floor(spaceUpgradePrice * 2.0); 
-                } else {
-                    customAlert("❌ سيولة غير كافية", `ترقية تقنيات الفضاء تتطلب ${spaceUpgradePrice} دولار!`);
-                    return;
-                }
-            }
+            if (type === 'cloth' && clothOwned > 0 && money >= clothUpgradePrice) { money -= clothUpgradePrice; clothLevel++; clothProfitPerSecond = clothLevel * 30; clothUpgradePrice = Math.floor(clothUpgradePrice * 1.7); }
+            else if (type === 'robot' && robotOwned > 0 && money >= robotUpgradePrice) { money -= robotUpgradePrice; robotLevel++; robotProfitPerSecond = robotLevel * 100; robotUpgradePrice = Math.floor(robotUpgradePrice * 1.7); }
+            else if (type === 'tea' && teaOwned > 0 && money >= teaUpgradePrice) { money -= teaUpgradePrice; teaLevel++; teaProfitPerSecond = teaLevel * 2500; teaUpgradePrice = Math.floor(teaUpgradePrice * 1.8); }
+            else if (type === 'space' && spaceOwned > 0 && money >= spaceUpgradePrice) { money -= spaceUpgradePrice; spaceLevel++; spaceProfitPerSecond = spaceLevel * 25000; spaceUpgradePrice = Math.floor(spaceUpgradePrice * 1.9); }
+            else { customAlert("⚠️ إدارة الأصول", "تأكدي من امتلاك أصل واحد على الأقل من هذا النوع وتوفر قيمة الترقية الكاش!"); return; }
+            updateUI(); saveGame();
+        }
+
+        function hireManager(type) {
+            if (type === 'cloth' && !clothAuto && money >= 1000) { money -= 1000; clothAuto = true; }
+            else if (type === 'robot' && !robotAuto && money >= 5000) { money -= 5000; robotAuto = true; }
+            else if (type === 'tea' && !teaAuto && money >= 75000) { money -= 75000; teaAuto = true; }
+            else if (type === 'space' && !spaceAuto && money >= 1500000) { money -= 1500000; spaceAuto = true; }
+            else { customAlert("❌ إخفاق إداري", "إما أنكِ وظفتِ مديراً بالفعل لهذا القطاع أو الكاش غير كافٍ للراتب!"); return; }
             updateUI(); saveGame();
         }
 
         function startTrading() {
-            playBeep();
-            const randomIndex = Math.floor(Math.random() * luckyCardsTemplate.length);
-            const card = luckyCardsTemplate[randomIndex];
-            money += card.moneyEffect; gems += card.gemsEffect;
-            
-            document.getElementById("cardText").innerText = isFemale ? card.textF : card.textM;
-            
-            if (money <= 0) { money = 500; }
+            let effect = Math.floor(Math.random() * 2000) - 800;
+            money += effect;
+            if(effect >= 0) { document.getElementById("cardText").innerText = `📈 تداول ناجح! قناص الفرص يحقق أرباحاً فورية بقيمة +${effect} دولار!`; }
+            else { document.getElementById("cardText").innerText = `📉 حركة تصحيحية مفاجئة تؤدي لعجز مؤقت بقيمة ${effect} دولار!`; }
+            if(money < 0) handleBankruptcy();
             updateUI(); saveGame();
         }
 
+        function buyStock(key) {
+            let s = stocks[key];
+            if(money >= s.price) { money -= s.price; s.owned++; updateUI(); saveGame(); }
+            else { customAlert("❌ البورصة الحية", "رصيدكِ من الكاش لا يكفي لشراء السهم بالسعر الحالي."); }
+        }
+        function sellStock(key) {
+            let s = stocks[key];
+            if(s.owned > 0) { s.owned--; money += s.price; updateUI(); saveGame(); }
+            else { customAlert("❌ البورصة الحية", "لا تملكين أي أسهم في هذه الشركة لبيعها حالياً!"); }
+        }
+
+        function buyGemWithMoney() {
+            if (money >= gemBuyPrice) { money -= gemBuyPrice; gems++; gemBuyPrice += 150; gemSellPrice += 100; updateUI(); saveGame(); }
+            else { customAlert("❌ الصرافة", "الكاش المتوفر لا يغطي سعر صرف الجوهرة!"); }
+        }
+        function sellGemForMoney() {
+            if (gems >= 1) { gems--; money += gemSellPrice; gemBuyPrice = Math.max(1500, gemBuyPrice - 80); gemSellPrice = Math.max(1000, gemSellPrice - 60); updateUI(); saveGame(); }
+            else { customAlert("❌ الصرافة", "مخزون الجواهر لديكِ فارغ تماماً!"); }
+        }
+
+        function handleBankruptcy() {
+            customAlert("🚨 خطة الإنقاذ والدعم الاستراتيجي", "لقد تعثرت شركتك فجأة! كدعم سيادي تم منحك تمويل إنقاذ طارئ بقيمة 1000 دولار للوقوف مجدداً والتعلم من المخاطرة الكبرى!");
+            money = 1000;
+        }
+
+        // دالة مشاركة الإنجاز المعدلة كلياً لتعرض الإحصائيات بالتفصيل الافتراضي
         function shareAchievement() {
-            playBeep();
-            let rankText = document.getElementById("rankText").innerText;
-            let titleWord = isFemale ? "تحقق" : "يحقق";
-            let shareMessage = `🏆 القائد ${playerName} ${titleWord} إنجازًا في لعبة Captain Nala Avan!\n\n💰 الرصيد الحالي: ${money} دولار\n💎 رصيد الجواهر: ${gems}\n🎖️ الرتبة: ${rankText}\n\nتحدّ أصدقاءك في بورصة التداول الاستثمارية! 📈`;
-            customAlert("🏆 مشاركة الإنجاز", shareMessage);
+            let rank = document.getElementById("rankText").innerText;
+            let totalOffices = clothOwned + robotOwned + teaOwned + spaceOwned;
+            
+            let managersCount = 0;
+            if(clothAuto) managersCount++;
+            if(robotAuto) managersCount++;
+            if(teaAuto) managersCount++;
+            if(spaceAuto) managersCount++;
+
+            let htmlContent = `
+                🔹 <strong>اسم القائد:</strong> ${playerName}<br>
+                🎖️ <strong>الرتبة الحالية:</strong> ${rank}<br>
+                💰 <strong>الأموال المجمعة:</strong> ${money} $<br>
+                💎 <strong>رصيد الجواهر:</strong> ${gems}<br>
+                🏢 <strong>عدد المصانع والمكاتب المشترآة:</strong> ${totalOffices} مصانع/وكالات<br>
+                🤖 <strong>عدد الموظفين والمديرين الفاعلين:</strong> ${managersCount} مديرين أتمتة
+            `;
+            
+            document.getElementById("achievementContent").innerHTML = htmlContent;
+            openModal("achievementModal");
         }
 
         function updateUI() {
-            document.getElementById("playerNameText").innerText = playerName;
             document.getElementById("moneyText").innerText = money;
             document.getElementById("gemsText").innerText = gems;
             document.getElementById("clothCount").innerText = clothOwned;
             document.getElementById("robotCount").innerText = robotOwned;
+            document.getElementById("teaCount").innerText = teaOwned;
             document.getElementById("spaceCount").innerText = spaceOwned;
-            
-            document.getElementById("clothLevelText").innerText = "(كفاءة: ليفل " + clothLevel + ")";
-            document.getElementById("robotLevelText").innerText = "(كفاءة: ليفل " + robotLevel + ")";
-            document.getElementById("spaceLevelText").innerText = "(كفاءة: ليفل " + spaceLevel + ")";
+
+            document.getElementById("clothLevelText").innerText = "(ليفل " + clothLevel + ")";
+            document.getElementById("robotLevelText").innerText = "(ليفل " + robotLevel + ")";
+            document.getElementById("spaceLevelText").innerText = "(ليفل " + spaceLevel + ")";
             
             document.getElementById("clothUpgradePriceText").innerText = clothUpgradePrice;
             document.getElementById("robotUpgradePriceText").innerText = robotUpgradePrice;
+            document.getElementById("teaUpgradePriceText").innerText = teaUpgradePrice;
             document.getElementById("spaceUpgradePriceText").innerText = spaceUpgradePrice;
-            
-            document.getElementById("clothProfitText").innerText = "+" + clothProfitPerSecond + " دولار / ثانية";
-            document.getElementById("robotProfitText").innerText = "+" + robotProfitPerSecond + " دولار / ثانية";
-            document.getElementById("spaceProfitText").innerText = "+" + spaceProfitPerSecond + " دولار / ثانية";
-            
-            document.getElementById("gemBuyPriceText").innerText = gemBuyPrice + " دولار";
-            document.getElementById("gemSellPriceText").innerText = gemSellPrice + " دولار";
 
-            if (isFemale) {
-                document.getElementById("rankLabelText").innerText = "رتبتكِ الاستثمارية الحالية:";
-                document.getElementById("buyLabelText").innerText = "🟢 سعر الشراء منكِ:";
-            } else {
-                document.getElementById("rankLabelText").innerText = "رتبتكَ الاستثمارية الحالية:";
-                document.getElementById("buyLabelText").innerText = "🟢 سعر الشراء منك:";
-            }
+            document.getElementById("clothAutoText").innerText = clothAuto ? "يعمل تلقائياً ⚡ (كفاءة مضاعفة)" : "غير متوفر ❌";
+            document.getElementById("clothAutoText").style.color = clothAuto ? "#22C55E" : "#EF4444";
+            document.getElementById("robotAutoText").innerText = robotAuto ? "يعمل تلقائياً ⚡ (كفاءة مضاعفة)" : "غير متوفر ❌";
+            document.getElementById("robotAutoText").style.color = robotAuto ? "#22C55E" : "#EF4444";
+            document.getElementById("teaAutoText").innerText = teaAuto ? "يعمل تلقائياً ⚡ (كفاءة مضاعفة)" : "غير متوفر ❌";
+            document.getElementById("teaAutoText").style.color = teaAuto ? "#22C55E" : "#EF4444";
+            document.getElementById("spaceAutoText").innerText = spaceAuto ? "يعمل تلقائياً ⚡ (كفاءة مضاعفة)" : "غير متوفر ❌";
+            document.getElementById("spaceAutoText").style.color = spaceAuto ? "#22C55E" : "#EF4444";
 
-            // --- نظام الرتب المطور: تحدي المليار دولار الصارم ---
-            if (money >= 1000000000 && spaceOwned >= 1) {
-                document.getElementById("rankText").innerHTML = isFemale ? "حوت السوق وإمبراطورية الاقتصاد الفضائي 🐋👑" : "حوت السوق وإمبراطور الاقتصاد الفضائي 🐋👑";
-            } else if (spaceOwned >= 1) {
-                document.getElementById("rankText").innerHTML = isFemale ? "مستثمرة مبتدئة في الفضاء 🌌🚀" : "مستثمر مبتدئ في الفضاء 🌌🚀";
-            } else if (money >= 5000) {
-                document.getElementById("rankText").innerHTML = "مدير محترف ✨💼";
+            document.getElementById("stockClothOwned").innerText = stocks.cloth.owned;
+            document.getElementById("stockTeaOwned").innerText = stocks.tea.owned;
+            document.getElementById("stockRobotOwned").innerText = stocks.robot.owned;
+
+            if (money >= 50000000 && spaceOwned >= 1 && teaOwned >= 3) {
+                document.getElementById("rankText").innerText = "إمبراطور الفضاء وسيد كبسولات النعناع الكوني 🌌🍃";
+            } else if (teaOwned >= 1 && spaceOwned === 0) {
+                document.getElementById("rankText").innerText = "مورد كبسولات الفضاء الأول 🍃🧪";
+            } else if (money >= 100000) {
+                document.getElementById("rankText").innerText = "رائد أعمال مالي بارع 💼✨";
             } else {
-                document.getElementById("rankText").innerHTML = isFemale ? "مستثمرة مبتدئة 🌱" : "مستثمر مبتدئ 🌱";
+                document.getElementById("rankText").innerText = "مستثمر طموح قادم بقوة 🌱";
             }
         }
 
-        loadGame(); calculateCurrentPrices(); updateUI();
+        setInterval(function() {
+            for (let key in stocks) {
+                let changePercent = (Math.random() * 30 - 14);
+                let s = stocks[key];
+                s.price = Math.max(10, Math.floor(s.price * (1 + changePercent / 100)));
+                
+                let priceEl = document.getElementById(`stock${key.charAt(0).toUpperCase() + key.slice(1)}Price`);
+                let changeEl = document.getElementById(`stock${key.charAt(0).toUpperCase() + key.slice(1)}Change`);
+                
+                priceEl.innerText = s.price + " $";
+                if(changePercent >= 0) {
+                    changeEl.innerText = "+" + changePercent.toFixed(1) + "%";
+                    changeEl.className = "stock-up";
+                } else {
+                    changeEl.innerText = changePercent.toFixed(1) + "%";
+                    changeEl.className = "stock-down";
+                }
+            }
+        }, 4000);
 
         setInterval(function() {
-            let totalIncome = (clothOwned * clothProfitPerSecond) + (robotOwned * robotProfitPerSecond) + (spaceOwned * spaceProfitPerSecond);
-            if (totalIncome > 0) { money += totalIncome; updateUI(); saveGame(); }
+            let randomNews = globalNews[Math.floor(Math.random() * globalNews.length)];
+            document.getElementById("newsTickerText").innerText = randomNews;
+        }, 20000);
+
+        setInterval(function() {
+            let clothIncome = clothOwned * clothProfitPerSecond * (clothAuto ? 2 : 1);
+            let robotIncome = robotOwned * robotProfitPerSecond * (robotAuto ? 2 : 1);
+            let teaIncome = teaOwned * teaProfitPerSecond * (teaAuto ? 2 : 1);
+            let spaceIncome = spaceOwned * spaceProfitPerSecond * (spaceAuto ? 2 : 1);
+            
+            let total = clothIncome + robotIncome + teaIncome + spaceIncome;
+            if(total > 0) { money += total; updateUI(); saveGame(); }
         }, 1000);
+
+        loadGame(); calculateCurrentPrices(); updateUI();
     </script>
 </body>
 </html>
